@@ -41,7 +41,8 @@ export const updateSession = async (request: NextRequest) => {
 
     // protected routes
     if (request.nextUrl.pathname.startsWith("/protected") && user.error) {
-      return NextResponse.redirect(new URL("/sign-in", request.url));
+      const pathname = request.nextUrl.pathname
+      return NextResponse.redirect(new URL(`/sign-in?callbackUrl=${pathname}`, request.url))
     }
 
     if (request.nextUrl.pathname === "/" && !user.error) {

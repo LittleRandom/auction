@@ -4,6 +4,7 @@ import { encodedRedirect } from "@/utils/utils";
 import { createClient } from "@/utils/supabase/server";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import { FormEvent, useEffect } from "react";
 
 export const signUpAction = async (formData: FormData) => {
   const email = formData.get("email")?.toString();
@@ -39,7 +40,7 @@ export const signUpAction = async (formData: FormData) => {
   }
 };
 
-export const signInAction = async (formData: FormData) => {
+export const signInAction = async (formData: FormData, callbackUrl: string) => {
   const email = formData.get("email") as string;
   const password = formData.get("password") as string;
   const supabase = await createClient();
@@ -50,11 +51,15 @@ export const signInAction = async (formData: FormData) => {
   });
 
   if (error) {
-    return encodedRedirect("error", "/sign-in", error.message);
+    return encodedRedirect("error", `/sign-in${"?callbackUrl=" + callbackUrl ? callbackUrl : ""}`, error.message);
+  }
+  else if (callbackUrl) {
+    return redirect(callbackUrl);
   }
 
   return redirect("/protected");
 };
+
 
 export const forgotPasswordAction = async (formData: FormData) => {
   const email = formData.get("email")?.toString();
@@ -132,3 +137,26 @@ export const signOutAction = async () => {
   await supabase.auth.signOut();
   return redirect("/sign-in");
 };
+
+// export const handleSubmit = async (formData: FormData) => {
+//   // const name = formData.get("name") as string;
+//   // const currenprice = formData.get("currentprice") as string;
+//   // const msrp = formData.get("msrp") as string;
+
+//   const supabase = await createClient();
+//   const { error } = await supabase
+//     .from('auctionlots')
+//     .insert([
+//       { name: 'someValue', currentprice: 2 },
+//     ])
+//     .select()
+//   // .from('auctionlots')
+//   // .insert([{
+//   //   name: name,
+//   //   currentprice: currenprice,
+//   //   msrp: msrp,
+//   // },])
+//   console.log(error)
+//   // Here you would typically add your Supabase integration
+//   console.log('Form submitted:', formData);
+// };

@@ -7,6 +7,13 @@ import Link from "next/link";
 
 export default async function Login(props: { searchParams: Promise<Message> }) {
   const searchParams = await props.searchParams;
+  const callbackUrl = (await searchParams).callbackUrl
+
+  const withRedirect = async (formData: FormData) => {
+    'use server'
+    return signInAction(formData, callbackUrl)
+  }
+
   return (
     <form className="flex-1 flex flex-col min-w-64">
       <h1 className="text-2xl font-medium">Sign in</h1>
@@ -34,7 +41,7 @@ export default async function Login(props: { searchParams: Promise<Message> }) {
           placeholder="Your password"
           required
         />
-        <SubmitButton pendingText="Signing In..." formAction={signInAction}>
+        <SubmitButton pendingText="Signing In..." formAction={withRedirect}>
           Sign in
         </SubmitButton>
         <FormMessage message={searchParams} />

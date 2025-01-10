@@ -1,9 +1,13 @@
+import { redirect } from "next/navigation";
+
 export type Message =
   | { success: string }
   | { error: string }
-  | { message: string };
+  | { message: string }
+  | { callbackUrl: string };
 
 export function FormMessage({ message }: { message: Message }) {
+
   return (
     <div className="flex flex-col gap-2 w-full max-w-md text-sm">
       {"success" in message && (
