@@ -27,3 +27,14 @@ export const createClient = async () => {
     },
   );
 };
+
+export const getUserData = async () => {
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  const something = await supabase.auth.getUser();
+
+  return user
+}

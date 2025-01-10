@@ -1,5 +1,5 @@
 import { createClient } from '@/utils/supabase/server';
-import ProductForm from '@/app/_components/ProductForm'
+import LotForm from '@/components/lot-form'
 import { redirect } from 'next/navigation';
 
 export default async function Page() {
@@ -13,5 +13,5 @@ export default async function Page() {
         return redirect("/auth/callback?redirect_to=");
     }
 
-    return <pre><ProductForm></ProductForm></pre>
+    return <pre><LotForm></LotForm></pre>
 }

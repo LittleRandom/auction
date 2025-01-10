@@ -8,13 +8,15 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 import { createClient } from '@/utils/supabase/client'
+import { useFormInput } from '@/hooks/forms';
 
-interface ProductFormData {
+interface LotFormData {
     name: string;
-    currentprice: string;
-    msrp: string;
+    currentprice: number;
+    msrp: number;
     condition: string;
     cf_bucket_url: string;
+    bids: number;
 }
 
 type Condition = 'new' | 'like-new' | 'used' | 'refurbished';
@@ -27,12 +29,13 @@ const CONDITIONS: { value: Condition; label: string; }[] = [
 ];
 
 const ProductForm: React.FC = () => {
-    const [formData, setFormData] = useState<ProductFormData>({
+    const [formData, setFormData] = useState<LotFormData>({
         name: '',
-        currentprice: '',
-        msrp: '',
+        currentprice: 0,
+        msrp: 0,
         condition: '',
-        cf_bucket_url: ''
+        cf_bucket_url: '',
+        bids: 0,
     });
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -45,7 +48,6 @@ const ProductForm: React.FC = () => {
                 formData,
             ])
             .select()
-
         // Here you would typically add your Supabase integration
         console.log('Form submitted:', formData);
         console.log('received:', data);
@@ -54,10 +56,11 @@ const ProductForm: React.FC = () => {
         setFormData(
             {
                 name: '',
-                currentprice: '',
-                msrp: '',
+                currentprice: 0,
+                msrp: 0,
                 condition: '',
-                cf_bucket_url: ''
+                cf_bucket_url: '',
+                bids: 0,
             }
         )
     };
@@ -78,7 +81,7 @@ const ProductForm: React.FC = () => {
     };
 
     return (
-        <Card className="w-96 mx-auto">
+        <Card className="w-96 mx-auto" >
             <CardHeader>
                 <CardTitle>Add New Product</CardTitle>
             </CardHeader>
@@ -160,7 +163,7 @@ const ProductForm: React.FC = () => {
                     </Button>
                 </form>
             </CardContent>
-        </Card>
+        </Card >
     );
 };
 

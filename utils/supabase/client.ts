@@ -18,8 +18,16 @@ export const createClient = () => {
   return client
 }
 
-function useSupabaseBrowser() {
+export function useSupabaseBrowser() {
   return useMemo(createClient, [])
 }
 
-export default useSupabaseBrowser
+export const getUserData = async () => {
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  return user
+}

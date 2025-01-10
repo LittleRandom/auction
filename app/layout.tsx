@@ -7,6 +7,18 @@ import { Geist } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import Link from "next/link";
 import "./globals.css";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuIndicator,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuViewport,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu"
+
 
 import Providers from '@/providers'
 
@@ -45,11 +57,41 @@ export default function RootLayout({
                 <div className="w-full max-w-5xl flex justify-between items-center p-3 px-5 text-sm">
                   <div className="flex gap-5 items-center font-semibold">
                     <Link href={"/"}>Quoc's Website</Link>
+                    <NavigationMenu>
+                      <NavigationMenuList>
+
+                        <NavigationMenuItem>
+                          <NavigationMenuTrigger>Item One</NavigationMenuTrigger>
+                          <NavigationMenuContent>
+                            <NavigationMenuLink>Link</NavigationMenuLink>
+                          </NavigationMenuContent>
+                        </NavigationMenuItem>
+
+                        <NavigationMenuItem>
+                          <Link href="/protected/import" legacyBehavior passHref>
+                            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                              Import
+                            </NavigationMenuLink>
+                          </Link>
+                        </NavigationMenuItem>
+
+                        <NavigationMenuItem>
+                          <Link href="/protected/lots" legacyBehavior passHref>
+                            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                              Lots
+                            </NavigationMenuLink>
+                          </Link>
+                        </NavigationMenuItem>
+
+                      </NavigationMenuList>
+                    </NavigationMenu>
+
                     <div className="flex items-center gap-2">
-                      <DeployButton />
+                      {/* <DeployButton /> */}
                     </div>
                   </div>
-                  {!hasEnvVars ? <EnvVarWarning /> : <HeaderAuth />}
+
+                  <HeaderAuth />
                 </div>
               </nav>
               <div className="flex flex-col gap-20 max-w-5xl p-5">
