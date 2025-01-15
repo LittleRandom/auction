@@ -4,8 +4,7 @@ import { InfoIcon } from "lucide-react";
 import { redirect } from "next/navigation";
 
 export default async function ProtectedPage() {
-
-  const user = getUserData()
+  const user = await getUserData()
 
   if (!user) {
     return redirect("/sign-in");

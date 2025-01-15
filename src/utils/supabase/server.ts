@@ -28,6 +28,10 @@ export const createClient = async () => {
   );
 };
 
+export const isSignedIn = async () => {
+  return true ? getUserData() : false
+}
+
 export const getUserData = async () => {
   const supabase = await createClient();
 
