@@ -12,7 +12,7 @@ import { useFormInput } from '@/hooks/forms';
 
 interface LotFormData {
     name: string;
-    currentprice: number;
+    current_bid: number;
     msrp: number;
     condition: string;
     cf_bucket_url: string;
@@ -31,7 +31,7 @@ const CONDITIONS: { value: Condition; label: string; }[] = [
 const ProductForm: React.FC = () => {
     const [formData, setFormData] = useState<LotFormData>({
         name: '',
-        currentprice: 0,
+        current_bid: 0,
         msrp: 0,
         condition: '',
         cf_bucket_url: '',
@@ -56,7 +56,7 @@ const ProductForm: React.FC = () => {
         setFormData(
             {
                 name: '',
-                currentprice: 0,
+                current_bid: 0,
                 msrp: 0,
                 condition: '',
                 cf_bucket_url: '',
@@ -100,13 +100,13 @@ const ProductForm: React.FC = () => {
                     </div>
 
                     <div className="space-y-2">
-                        <Label htmlFor="currentprice">Current Price</Label>
+                        <Label htmlFor="current_bid">Current Bid</Label>
                         <Input
-                            id="currentprice"
-                            name="currentprice"
+                            id="current_bid"
+                            name="current_bid"
                             type="number"
                             step="0.01"
-                            value={formData.currentprice}
+                            value={formData.current_bid}
                             onChange={handleInputChange}
                             required
                             className="w-full"

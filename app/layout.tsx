@@ -45,16 +45,16 @@ export default function RootLayout({
 
   const menuItems = [
     {
-      name: "Import",
-      uri: "/protected/import"
+      name: "Listings",
+      uri: "/listings"
     },
     {
       name: "Lots",
       uri: "/protected/lots"
     },
     {
-      name: "Listings",
-      uri: "/listings"
+      name: "Import",
+      uri: "/protected/import"
     },
   ]
   return (
