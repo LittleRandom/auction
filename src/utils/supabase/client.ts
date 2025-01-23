@@ -5,7 +5,7 @@ import { useMemo } from "react";
 let client: TypedSupabaseClient | undefined
 
 export const createClient = () => {
-  
+
   if (client) {
     return client
   }

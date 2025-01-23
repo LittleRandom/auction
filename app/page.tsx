@@ -1,14 +1,18 @@
-import { LotListing } from "@/components/lot-listings";
+import CategoryList from "@/src/components/CategoryList";
+import { LotListing } from "@/src/components/Lots/LotListings";
 
 export default async function Home() {
 
   return (
     <>
-      <main className="flex-1 flex flex-col gap-6 px-4">
-        {/* <main className=""> */}
-        {/* <h2 className="font-medium text-xl mb-4">Next steps</h2> */}
-        <LotListing />
-      </main>
+      <div className="max-w-full grid grid-cols-5 gap-5">
+        <div className="">
+          <CategoryList ></CategoryList>
+        </div>
+        <div className="col-start-2 col-span-4">
+          <LotListing ></LotListing>
+        </div>
+      </div>
     </>
   );
 }

@@ -42,6 +42,21 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  const menuItems = [
+    {
+      name: "Import",
+      uri: "/protected/import"
+    },
+    {
+      name: "Lots",
+      uri: "/protected/lots"
+    },
+    {
+      name: "Listings",
+      uri: "/listings"
+    },
+  ]
   return (
     <html lang="en" className={geistSans.className} suppressHydrationWarning>
       <body className="bg-background text-foreground">
@@ -60,20 +75,23 @@ export default function RootLayout({
                     <NavigationMenu>
                       <NavigationMenuList>
 
-                        <NavigationMenuItem>
+                        {/* <NavigationMenuItem>
                           <NavigationMenuTrigger>Item One</NavigationMenuTrigger>
                           <NavigationMenuContent>
                             <NavigationMenuLink>Link</NavigationMenuLink>
                           </NavigationMenuContent>
-                        </NavigationMenuItem>
+                        </NavigationMenuItem> */}
 
-                        <NavigationMenuItem>
-                          <Link href="/protected/import" legacyBehavior passHref>
-                            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                              Import
-                            </NavigationMenuLink>
-                          </Link>
-                        </NavigationMenuItem>
+                        {menuItems.map((item) => (
+                          <NavigationMenuItem>
+                            <Link href={item.uri} legacyBehavior passHref>
+                              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                                {item.name}
+                              </NavigationMenuLink>
+                            </Link>
+                          </NavigationMenuItem>
+                        ))}
+                        {/*
 
                         <NavigationMenuItem>
                           <Link href="/protected/lots" legacyBehavior passHref>
@@ -83,18 +101,17 @@ export default function RootLayout({
                           </Link>
                         </NavigationMenuItem>
 
+                        */}
                       </NavigationMenuList>
                     </NavigationMenu>
 
-                    <div className="flex items-center gap-2">
-                      {/* <DeployButton /> */}
-                    </div>
                   </div>
 
                   <HeaderAuth />
                 </div>
               </nav>
-              <div className="flex flex-col gap-20 max-w-5xl p-5">
+              <div className="max-w-5xl ">
+                {/* <div className=""> */}
                 <Providers>{children}</Providers>
               </div>
 
@@ -116,6 +133,6 @@ export default function RootLayout({
           </main>
         </ThemeProvider>
       </body>
-    </html>
+    </html >
   );
 }
