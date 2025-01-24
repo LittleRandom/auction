@@ -12,19 +12,19 @@ export type Database = {
       auction_events: {
         Row: {
           created_at: string
-          end_date: string | null
+          end_date: string
           id: number
           is_active: boolean
         }
         Insert: {
           created_at?: string
-          end_date?: string | null
+          end_date?: string
           id?: number
           is_active?: boolean
         }
         Update: {
           created_at?: string
-          end_date?: string | null
+          end_date?: string
           id?: number
           is_active?: boolean
         }

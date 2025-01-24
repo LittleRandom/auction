@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 import { createClient } from '@/src/lib/supabase/client'
+import { EventSelectList } from '../events/event-select-list';
 
 interface LotFormData {
     name: string;
@@ -15,7 +16,8 @@ interface LotFormData {
     msrp: number;
     condition: string;
     cf_bucket_url: string;
-    bids: number;
+    bid_count: number;
+    event_num: number;
 }
 
 type Condition = 'new' | 'like-new' | 'used' | 'refurbished';
@@ -34,13 +36,15 @@ const ProductForm: React.FC = () => {
         msrp: 0,
         condition: '',
         cf_bucket_url: '',
-        bids: 0,
+        bid_count: 0,
+        event_num: 0,
     });
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const supabase = createClient()
 
+        console.log("🚀 ~ handleSubmit ~ formData:", formData)
         const { data, error } = await supabase
             .from('auction_lots')
             .insert([
@@ -59,7 +63,8 @@ const ProductForm: React.FC = () => {
                 msrp: 0,
                 condition: '',
                 cf_bucket_url: '',
-                bids: 0,
+                bid_count: 0,
+                event_num: 0,
             }
         )
     };
@@ -76,6 +81,13 @@ const ProductForm: React.FC = () => {
         setFormData(prev => ({
             ...prev,
             condition: value
+        }));
+    };
+
+    const handleEventSelect = (value: string) => {
+        setFormData(prev => ({
+            ...prev,
+            event_num: parseInt(value)
         }));
     };
 
@@ -142,6 +154,19 @@ const ProductForm: React.FC = () => {
                                     </SelectItem>
                                 ))}
                             </SelectContent>
+                        </Select>
+                    </div>
+
+                    <div className="space-y-2">
+                        <Label htmlFor="event_num">Event</Label>
+                        <Select
+                            onValueChange={handleEventSelect}
+                            value={formData.event_num.toString()}
+                        >
+                            <SelectTrigger className="w-full">
+                                <SelectValue placeholder="Select condition" />
+                            </SelectTrigger>
+                            <EventSelectList onEventSelect={handleEventSelect}></EventSelectList>
                         </Select>
                     </div>
 

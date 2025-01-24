@@ -1,42 +1,38 @@
 "use client"
 // ProductForm.tsx
-import React, { useState, ChangeEvent, FormEvent } from 'react';
+import React, { useState, ChangeEvent, FormEvent, useRef } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 import { createClient } from '@/src/lib/supabase/client'
+import { DatePickerWithPresets } from '../calendar-picker-presets';
 
-interface LotFormData {
-    name: string;
-    current_bid: number;
-    msrp: number;
-    cf_bucket_url: string;
-    bids: number;
+interface EventFormData {
+    end_date: string
 }
 
-type Condition = 'new' | 'like-new' | 'used' | 'refurbished';
-
 const ProductForm: React.FC = () => {
-    const [formData, setFormData] = useState<LotFormData>({
-        name: '',
-        current_bid: 0,
-        msrp: 0,
-        cf_bucket_url: '',
-        bids: 0,
+    const [formData, setFormData] = useState<EventFormData>({
+        end_date: ''
     });
+
+    const handleEndDateChange = async (date: Date | undefined) => {
+        setFormData(prev => ({
+            ...prev,
+            end_date: date!.toISOString()
+        }))
+    }
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const supabase = createClient()
 
         const { data, error } = await supabase
-            .from('auction_lots')
-            .insert([
-                formData,
-            ])
+            .from('auction_events')
+            .insert(
+                formData
+            )
             .select()
         // Here you would typically add your Supabase integration
         console.log('Form submitted:', formData);
@@ -45,29 +41,12 @@ const ProductForm: React.FC = () => {
 
         setFormData(
             {
-                name: '',
-                current_bid: 0,
-                msrp: 0,
-                cf_bucket_url: '',
-                bids: 0,
+                end_date: ''
             }
         )
+
     };
 
-    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({
-            ...prev,
-            [name]: value
-        }));
-    };
-
-    const handleConditionChange = (value: string) => {
-        setFormData(prev => ({
-            ...prev,
-            condition: value
-        }));
-    };
 
     return (
         <Card className="w-96 mx-auto" >
@@ -77,57 +56,12 @@ const ProductForm: React.FC = () => {
             <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="space-y-2">
-                        <Label htmlFor="name">Product Name</Label>
-                        <Input
-                            id="name"
-                            name="name"
-                            value={formData.name}
-                            onChange={handleInputChange}
-                            required
-                            className="w-full"
-                        />
+                        <Label htmlFor="end_date">End Date</Label>
+                        <div>
+                            <DatePickerWithPresets
+                                onDateChange={handleEndDateChange} />
+                        </div>
                     </div>
-
-                    <div className="space-y-2">
-                        <Label htmlFor="current_bid">Current Bid</Label>
-                        <Input
-                            id="current_bid"
-                            name="current_bid"
-                            type="number"
-                            step="0.01"
-                            value={formData.current_bid}
-                            onChange={handleInputChange}
-                            required
-                            className="w-full"
-                        />
-                    </div>
-
-                    <div className="space-y-2">
-                        <Label htmlFor="msrp">MSRP</Label>
-                        <Input
-                            id="msrp"
-                            name="msrp"
-                            type="number"
-                            step="0.01"
-                            value={formData.msrp}
-                            onChange={handleInputChange}
-                            required
-                            className="w-full"
-                        />
-                    </div>
-
-                    <div className="space-y-2">
-                        <Label htmlFor="cf_bucket_url">Image URL</Label>
-                        <Input
-                            id="cf_bucket_url"
-                            name="cf_bucket_url"
-                            type="url"
-                            value={formData.cf_bucket_url}
-                            onChange={handleInputChange}
-                            className="w-full"
-                        />
-                    </div>
-
                     <Button type="submit" className="w-full">
                         Add Product
                     </Button>

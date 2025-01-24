@@ -51,8 +51,12 @@ export default function RootLayout({
       uri: "/protected/lots"
     },
     {
-      name: "Import",
-      uri: "/protected/import"
+      name: "ImportLots",
+      uri: "/protected/import/lots"
+    },
+    {
+      name: "Events",
+      uri: "/protected/import/events"
     },
   ]
   return (
