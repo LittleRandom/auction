@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useState } from "react";
 import { LotItem } from "@/src/hooks/use-lots";
+import IconComponent from "@/components/icon-component";
 
 export default function LotLineCard({ item }: { item: LotItem }) {
     const [expandedItem, setExpandedItem] = useState<Number | null>(null);
@@ -19,11 +20,7 @@ export default function LotLineCard({ item }: { item: LotItem }) {
                 <div className="grid grid-cols-12 items-center gap-4 p-4 hover:bg-primary-foreground rounded-lg">
                     {/* Left: Icon */}
                     <div className="col-span-1 text-2xl">
-                        <img
-                            src={item.cf_bucket_url}
-                            alt="Icon"
-                            className="icon"
-                        />
+                        <IconComponent image_url={item.cf_bucket_url}></IconComponent>
                     </div>
 
                     {/* Middle: Item Details */}
