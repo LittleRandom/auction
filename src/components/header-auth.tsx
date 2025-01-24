@@ -1,9 +1,9 @@
 import { signOutAction } from "@/app/actions";
-import { hasEnvVars } from "@/utils/supabase/check-env-vars";
+import { hasEnvVars } from "@/src/lib/supabase/check-env-vars";
 import Link from "next/link";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
-import { createClient, getUserData } from "@/utils/supabase/server";
+import { createClient, getUserData } from "@/src/lib/supabase/server";
 
 export default async function AuthButton() {
 

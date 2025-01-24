@@ -45,9 +45,9 @@ export const updateSession = async (request: NextRequest) => {
       return NextResponse.redirect(new URL(`/sign-in?callbackUrl=${pathname}`, request.url))
     }
 
-    if (request.nextUrl.pathname === "/" && !user.error) {
-      return NextResponse.redirect(new URL("/protected", request.url));
-    }
+    // if (request.nextUrl.pathname === "/" && !user.error) {
+    //   return NextResponse.redirect(new URL("/protected", request.url));
+    // }
 
     return response;
   } catch (e) {

@@ -4,17 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useState } from "react";
-
-export type LotItem = {
-    id: number;
-    title: string;
-    description: string;
-    condition: string;
-    msrp: number;
-    currentBid: number;
-    totalBids: number;
-    icon: string;
-}
+import { LotItem } from "@/src/hooks/use-lots";
 
 export default function LotLineCard({ item }: { item: LotItem }) {
     const [expandedItem, setExpandedItem] = useState<Number | null>(null);
@@ -28,12 +18,19 @@ export default function LotLineCard({ item }: { item: LotItem }) {
             <div key={item.id} className="group">
                 <div className="grid grid-cols-12 items-center gap-4 p-4 hover:bg-primary-foreground rounded-lg">
                     {/* Left: Icon */}
-                    <div className="col-span-1 text-2xl">{item.icon}</div>
+                    <div className="col-span-1 text-2xl">
+                        <img
+                            src={item.cf_bucket_url}
+                            alt="Icon"
+                            className="icon"
+                        />
+                    </div>
 
                     {/* Middle: Item Details */}
                     <div className="col-span-6">
-                        <h4 className="font-semibold">{item.title}</h4>
+                        <h4 className="font-semibold">{item.name}</h4>
                         <div className="flex items-center gap-3 text-sm text-gray-600">
+                            <Badge variant="outline">Lot {item.id}</Badge>
                             <Badge variant="outline">{item.condition}</Badge>
                             <span>MSRP: ${item.msrp.toLocaleString()}</span>
                         </div>
@@ -44,10 +41,10 @@ export default function LotLineCard({ item }: { item: LotItem }) {
                         <div className="text-right">
                             <div className="flex items-center gap-2 text-sm text-gray-600">
                                 <Users className="w-4 h-4" />
-                                <span>{item.totalBids} bids</span>
+                                <span>{item.bid_count} bids</span>
                             </div>
                             <div className="font-semibold text-green-600">
-                                ${item.currentBid.toLocaleString()}
+                                ${item.current_bid.toLocaleString()}
                             </div>
                         </div>
                         <Button size="sm" onClick={() => handleBid(item.id)}>
@@ -71,7 +68,7 @@ export default function LotLineCard({ item }: { item: LotItem }) {
                 {/* Expandable Details Section */}
                 {expandedItem === item.id && (
                     <div className="px-4 py-2 ml-12 text-sm rounded-lg items-start">
-                        {item.description}
+                        {item.condition}
                     </div>
                 )}
 

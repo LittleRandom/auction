@@ -7,8 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
-import { createClient } from '@/utils/supabase/client'
-import { useFormInput } from '@/hooks/forms';
+import { createClient } from '@/src/lib/supabase/client'
 
 interface LotFormData {
     name: string;
@@ -43,7 +42,7 @@ const ProductForm: React.FC = () => {
         const supabase = createClient()
 
         const { data, error } = await supabase
-            .from('auctionlots')
+            .from('auction_lots')
             .insert([
                 formData,
             ])

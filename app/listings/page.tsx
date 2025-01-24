@@ -1,7 +1,9 @@
-import CategoryList from "@/src/components/CategoryList";
-import LotListing from "@/src/components/Lots/LotListings";
+'use client'
+import CategoryList from "@/src/components/category-list";
+import LotListing from "@/src/components/lots/lot-listings";
 
 export default function Page() {
+
     return (
         <div className="max-w-full grid grid-cols-5 gap-5">
             <div className="">

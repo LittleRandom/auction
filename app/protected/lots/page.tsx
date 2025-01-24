@@ -1,6 +1,6 @@
 'use client'
 
-import { createClient } from '@/utils/supabase/client'
+import { createClient } from '@/src/lib/supabase/client'
 import { useEffect, useState } from 'react'
 
 export default function Page() {
@@ -10,9 +10,9 @@ export default function Page() {
     useEffect(() => {
         const getData = async () => {
 
-            // let { data: auctionlots, error } = await supabase.from('auctionlots').select('id')
+            // let { data: auction_lots, error } = await supabase.from('auction_lots').select('id')
 
-            const { data } = await supabase.from('auctionlots').select('*')
+            const { data } = await supabase.from('auction_lots').select('*')
             setNotes(data)
         }
         getData()

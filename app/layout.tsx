@@ -1,8 +1,6 @@
-import DeployButton from "@/components/deploy-button";
-import { EnvVarWarning } from "@/components/env-var-warning";
 import HeaderAuth from "@/components/header-auth";
 import { ThemeSwitcher } from "@/components/theme-switcher";
-import { hasEnvVars } from "@/utils/supabase/check-env-vars";
+import { hasEnvVars } from "@/src/lib/supabase/check-env-vars";
 import { Geist } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import Link from "next/link";
@@ -20,7 +18,7 @@ import {
 } from "@/components/ui/navigation-menu"
 
 
-import Providers from '@/providers'
+import Providers from '@/app/providers'
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -71,16 +69,9 @@ export default function RootLayout({
               <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
                 <div className="w-full max-w-5xl flex justify-between items-center p-3 px-5 text-sm">
                   <div className="flex gap-5 items-center font-semibold">
-                    <Link href={"/"}>Quoc's Website</Link>
+                    <Link href={"/"}>Yeet Auction</Link>
                     <NavigationMenu>
                       <NavigationMenuList>
-
-                        {/* <NavigationMenuItem>
-                          <NavigationMenuTrigger>Item One</NavigationMenuTrigger>
-                          <NavigationMenuContent>
-                            <NavigationMenuLink>Link</NavigationMenuLink>
-                          </NavigationMenuContent>
-                        </NavigationMenuItem> */}
 
                         {menuItems.map((item) => (
                           <NavigationMenuItem>
@@ -91,17 +82,6 @@ export default function RootLayout({
                             </Link>
                           </NavigationMenuItem>
                         ))}
-                        {/*
-
-                        <NavigationMenuItem>
-                          <Link href="/protected/lots" legacyBehavior passHref>
-                            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                              Lots
-                            </NavigationMenuLink>
-                          </Link>
-                        </NavigationMenuItem>
-
-                        */}
                       </NavigationMenuList>
                     </NavigationMenu>
 
@@ -111,7 +91,6 @@ export default function RootLayout({
                 </div>
               </nav>
               <div className="max-w-5xl ">
-                {/* <div className=""> */}
                 <Providers>{children}</Providers>
               </div>
 

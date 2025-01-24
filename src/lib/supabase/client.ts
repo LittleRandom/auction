@@ -1,8 +1,9 @@
 import { createBrowserClient } from "@supabase/ssr";
-import { TypedSupabaseClient } from "@/utils/types";
 import { useMemo } from "react";
+import { SupabaseClient } from "@supabase/supabase-js";
+import { Database } from "../database.types";
 
-let client: TypedSupabaseClient | undefined
+let client: SupabaseClient<Database> | undefined
 
 export const createClient = () => {
 
@@ -16,10 +17,6 @@ export const createClient = () => {
   );
 
   return client
-}
-
-export function useSupabaseBrowser() {
-  return useMemo(createClient, [])
 }
 
 export const getUserData = async () => {

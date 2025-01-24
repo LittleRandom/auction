@@ -1,7 +1,7 @@
 "use server";
 
-import { encodedRedirect } from "@/utils/utils";
-import { createClient } from "@/utils/supabase/server";
+import { encodedRedirect } from "@/lib/utils";
+import { createClient } from "@/src/lib/supabase/server";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { FormEvent, useEffect } from "react";
@@ -145,12 +145,12 @@ export const signOutAction = async () => {
 
 //   const supabase = await createClient();
 //   const { error } = await supabase
-//     .from('auctionlots')
+//     .from('auction_lots')
 //     .insert([
 //       { name: 'someValue', currentprice: 2 },
 //     ])
 //     .select()
-//   // .from('auctionlots')
+//   // .from('auction_lots')
 //   // .insert([{
 //   //   name: name,
 //   //   currentprice: currenprice,

@@ -9,30 +9,51 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      auctionlots: {
+      auction_events: {
         Row: {
-          bids: number
+          created_at: string
+          end_date: string | null
+          id: number
+          is_active: boolean
+        }
+        Insert: {
+          created_at?: string
+          end_date?: string | null
+          id?: number
+          is_active?: boolean
+        }
+        Update: {
+          created_at?: string
+          end_date?: string | null
+          id?: number
+          is_active?: boolean
+        }
+        Relationships: []
+      }
+      auction_lots: {
+        Row: {
+          bid_count: number
           cf_bucket_url: string
           condition: string
-          currentprice: number
+          current_bid: number
           id: number
           msrp: number
           name: string
         }
         Insert: {
-          bids?: number
+          bid_count?: number
           cf_bucket_url: string
           condition: string
-          currentprice: number
+          current_bid?: number
           id?: never
           msrp: number
           name: string
         }
         Update: {
-          bids?: number
+          bid_count?: number
           cf_bucket_url?: string
           condition?: string
-          currentprice?: number
+          current_bid?: number
           id?: never
           msrp?: number
           name?: string

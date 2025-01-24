@@ -1,5 +1,5 @@
-import CategoryList from "@/src/components/CategoryList";
-import { LotListing } from "@/src/components/Lots/LotListings";
+import CategoryList from "@/src/components/category-list";
+import { LotListing } from "@/src/components/lots/lot-listings";
 
 export default async function Home() {
 
