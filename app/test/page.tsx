@@ -11,7 +11,6 @@ export default function Page() {
     const [date, setDate] = useState<Date>();
 
     const handleButtonClick = () => {
-        console.log("🚀 ~ Page ~ date:", date)
 
     }
     return (

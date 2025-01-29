@@ -3,38 +3,60 @@ import { ChevronDown, Users } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import IconComponent from "@/components/icon-component";
 import { LotItem } from "@/lib/types";
+import { useRouter } from 'next/navigation'
+import Link from "next/link";
+import { NavigationMenuLink, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 
-export default function LotLineCard({ item }: { item: LotItem }) {
+export default function LotListingLineCard({ item }: { item: LotItem }) {
     const [expandedItem, setExpandedItem] = useState<Number | null>(null);
+
+    const itemUri = '/lots/' + item.id
 
     const handleBid = (itemId: number) => {
         console.log(`Bid placed on item ${itemId}`);
     };
 
+    const router = useRouter()
     return (
-        <Card>
+        <Card >
             <div key={item.id} className="group">
-                <div className="grid grid-cols-12 items-center gap-4 p-4 hover:bg-primary-foreground rounded-lg">
+                <div className="grid grid-cols-12 items-center gap-4 p-4 hover:bg-primary-foreground rounded-lg"
+                    onClick={() =>
+                        setExpandedItem(expandedItem === item.id ? null : item.id)
+                    }
+                >
                     {/* Left: Icon */}
-                    <div className="col-span-1 text-2xl">
+                    <div className="col-span-3 transition-transform hover:scale-105 cursor-pointer"
+                        onClick={() => router.push(itemUri)}
+                    >
                         <IconComponent image_url={item.cf_bucket_url}></IconComponent>
                     </div>
 
                     {/* Middle: Item Details */}
-                    <div className="col-span-6">
-                        <h4 className="font-semibold">{item.name}</h4>
+                    <div className="col-span-5 mx-5">
+                        <h4 className="font-semibold tracking-tighter text-xs sm:text-base md:text-lg lg:text-2xl ">
+                            <Link href={itemUri}>{item.name}</Link>
+                        </h4>
                         <div className="flex items-center gap-3 text-sm text-gray-600">
                             <Badge variant="outline">Lot {item.id}</Badge>
                             <Badge variant="outline">{item.condition}</Badge>
-                            <span>MSRP: ${item.msrp.toLocaleString()}</span>
+
+                            <h2 className="font-semibold">
+                                MSRP: ${item.msrp.toLocaleString()}
+                            </h2>
+                            {/* <NavigationMenuLink className={navigationMenuTriggerStyle()}> */}
+                            {/* {item.name} */}
+                            {/* </NavigationMenuLink> */}
                         </div>
                     </div>
 
                     {/* Right: Bid Information */}
-                    <div className="col-span-5 flex items-center justify-end gap-4">
+                    <div className="col-span-4 flex items-center justify-end gap-4">
                         <div className="text-right">
                             <div className="flex items-center gap-2 text-sm text-gray-600">
                                 <Users className="w-4 h-4" />
@@ -44,13 +66,11 @@ export default function LotLineCard({ item }: { item: LotItem }) {
                                 ${item.current_bid.toLocaleString()}
                             </div>
                         </div>
-                        <Button size="sm" onClick={() => handleBid(item.id)}>
-                            Bid Now
-                        </Button>
+
                         <Button
-                            variant="ghost"
+                            variant="link"
                             size="sm"
-                            className="p-0"
+                            className="p-5"
                             onClick={() =>
                                 setExpandedItem(expandedItem === item.id ? null : item.id)
                             }
@@ -64,8 +84,12 @@ export default function LotLineCard({ item }: { item: LotItem }) {
 
                 {/* Expandable Details Section */}
                 {expandedItem === item.id && (
-                    <div className="px-4 py-2 ml-12 text-sm rounded-lg items-start">
-                        {item.condition}
+                    <div className="my-2">
+                        <div className="px-4 py-2 ml-12 text-sm rounded-lg items-start">
+                            <Button size="sm" onClick={() => handleBid(item.id)}>
+                                Bid Now
+                            </Button>
+                        </div>
                     </div>
                 )}
 

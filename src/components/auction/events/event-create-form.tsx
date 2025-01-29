@@ -51,7 +51,7 @@ const EventImportForm: React.FC = () => {
     return (
         <Card className="w-96 mx-auto" >
             <CardHeader>
-                <CardTitle>Add New Product</CardTitle>
+                <CardTitle>Add New Event</CardTitle>
             </CardHeader>
             <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">

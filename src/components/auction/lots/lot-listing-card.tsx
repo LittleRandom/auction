@@ -4,11 +4,12 @@ import { Badge } from '@/components/ui/badge';
 import {
     Timer,
 } from 'lucide-react';
-import LotLineCard from '@/components/auction/lots/lot-line-card';
+import LotLineCard from '@/components/auction/lots/lot-listing-line-card';
 import { useLots } from '@/hooks/use-lots';
+import { LoadingSpinner } from '@/components/placeholders/loading-spinner';
 
-export const LotListing = () => {
-    const { data, isLoading } = useLots()
+export default function LotListingCard() {
+    const { data, isPending } = useLots()
 
     const lotInfo = {
         event_number: 2457,
@@ -16,7 +17,7 @@ export const LotListing = () => {
         timeLeft: "4",
     };
 
-    if (isLoading) return <div>Loading...</div>
+    if (isPending) return <LoadingSpinner />
 
     return (
         <Card className="grow">
@@ -45,5 +46,3 @@ export const LotListing = () => {
         </Card>
     );
 };
-
-export default LotListing;

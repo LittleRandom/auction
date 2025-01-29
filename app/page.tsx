@@ -1,4 +1,4 @@
-import LotListing from "@/components/auction/lots/lot-listings";
+import LotListingCard from "@/components/auction/lots/lot-listing-card";
 import CategoryList from "@/components/category-list";
 
 export default async function Home() {
@@ -10,7 +10,7 @@ export default async function Home() {
           <CategoryList ></CategoryList>
         </div>
         <div className="col-start-2 col-span-4">
-          <LotListing ></LotListing>
+          <LotListingCard ></LotListingCard>
         </div>
       </div>
     </>
