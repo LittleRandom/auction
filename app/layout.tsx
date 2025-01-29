@@ -14,6 +14,7 @@ import {
 
 
 import Providers from 'app/providers'
+import AuctionLogo from "@/components/ui/logo";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -37,10 +38,6 @@ export default function RootLayout({
 }>) {
 
   const menuItems = [
-    {
-      name: "Listings",
-      uri: "/listings"
-    },
     {
       name: "Lots",
       uri: "/protected/lots"
@@ -66,14 +63,18 @@ export default function RootLayout({
           <main className="min-h-screen flex flex-col items-center">
             <div className="flex-1 w-full flex flex-col gap-20 items-center">
               <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
-                <div className="w-full max-w-5xl flex justify-between items-center p-3 px-5 text-sm">
+                <div className="w-full  flex justify-between items-center p-3 px-20 text-sm">
                   <div className="flex gap-5 items-center font-semibold">
-                    <Link href={"/"}>Yeet Auction</Link>
+
+                    <AuctionLogo
+                      width="32px"
+                      height="32px"
+                    />
                     <NavigationMenu>
                       <NavigationMenuList>
 
                         {menuItems.map((item) => (
-                          <NavigationMenuItem>
+                          <NavigationMenuItem key={item.name}>
                             <Link href={item.uri} legacyBehavior passHref>
                               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                                 {item.name}
@@ -89,7 +90,7 @@ export default function RootLayout({
                   <HeaderAuth />
                 </div>
               </nav>
-              <div className="max-w-5xl ">
+              <div className="max-w-screen px-16 ">
                 <Providers>{children}</Providers>
               </div>
 

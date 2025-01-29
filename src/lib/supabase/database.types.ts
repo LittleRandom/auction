@@ -18,7 +18,7 @@ export type Database = {
         }
         Insert: {
           created_at?: string
-          end_date?: string
+          end_date: string
           id?: number
           is_active?: boolean
         }
@@ -36,6 +36,7 @@ export type Database = {
           cf_bucket_url: string
           condition: string
           current_bid: number
+          event_num: number
           id: number
           msrp: number
           name: string
@@ -45,6 +46,7 @@ export type Database = {
           cf_bucket_url: string
           condition: string
           current_bid?: number
+          event_num: number
           id?: never
           msrp: number
           name: string
@@ -54,11 +56,20 @@ export type Database = {
           cf_bucket_url?: string
           condition?: string
           current_bid?: number
+          event_num?: number
           id?: never
           msrp?: number
           name?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "auction_lots_event_num_fkey"
+            columns: ["event_num"]
+            isOneToOne: false
+            referencedRelation: "auction_events"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {

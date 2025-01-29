@@ -1,5 +1,4 @@
-import { useState } from "react";
-import ImagePlaceholder from "./image-placeholder";
+import ImagePlaceholder from "./placeholders/image-placeholder";
 
 interface IconComponentProps {
     image_url?: string;

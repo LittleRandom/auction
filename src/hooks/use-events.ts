@@ -1,8 +1,7 @@
 import { dataTagSymbol, useQuery } from "@tanstack/react-query";
 import { useSupabase } from "@/hooks/use-supabase";
-import { Tables } from "@/lib/database.types";
+import { Tables } from "@/lib/supabase/database.types";
 
-export interface EventItem extends Tables<'auction_events'>{}
 
 export function useEvents(options?: { isActive?: Boolean }) {
     const supabase = useSupabase();

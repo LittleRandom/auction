@@ -5,7 +5,7 @@ export default async function Home() {
 
   return (
     <>
-      <div className="max-w-full grid grid-cols-5 gap-5">
+      <div className="max-w-screen grid grid-cols-5 gap-5">
         <div className="">
           <CategoryList ></CategoryList>
         </div>
