@@ -4,8 +4,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useState } from "react";
-import { LotItem } from "@/src/hooks/use-lots";
 import IconComponent from "@/components/icon-component";
+import { LotItem } from "@/hooks/use-lots";
 
 export default function LotLineCard({ item }: { item: LotItem }) {
     const [expandedItem, setExpandedItem] = useState<Number | null>(null);

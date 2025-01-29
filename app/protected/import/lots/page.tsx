@@ -1,6 +1,4 @@
-import { createClient, isSignedIn } from '@/src/lib/supabase/server';
-import LotImportForm from '@/src/components/lots/lot-import-form'
-import { redirect } from 'next/navigation';
+import LotImportForm from "@/components/auction/lots/lot-import-form";
 
 export default async function Page() {
 

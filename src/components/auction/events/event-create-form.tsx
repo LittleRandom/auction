@@ -5,14 +5,14 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 
-import { createClient } from '@/src/lib/supabase/client'
-import { DatePickerWithPresets } from '../calendar-picker-presets';
+import { DatePickerWithPresets } from '../../calendar-picker-presets';
+import { createClient } from '@/lib/supabase/client';
 
 interface EventFormData {
     end_date: string
 }
 
-const ProductForm: React.FC = () => {
+const EventImportForm: React.FC = () => {
     const [formData, setFormData] = useState<EventFormData>({
         end_date: ''
     });
@@ -71,4 +71,4 @@ const ProductForm: React.FC = () => {
     );
 };
 
-export default ProductForm;
+export default EventImportForm;

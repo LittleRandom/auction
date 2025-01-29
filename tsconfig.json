@@ -23,13 +23,13 @@
         "name": "next"
       }
     ],
+    "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./*",
-        "./src/*"
-      ],
+
+      "@/components/*": ["src/components/*"],
+      "@/lib/*": ["src/lib/*"],
+      "@/hooks/*": ["src/hooks/*"]
     },
-    "baseUrl": "."
   },
   "include": [
     "next-env.d.ts",

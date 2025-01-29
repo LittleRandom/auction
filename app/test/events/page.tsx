@@ -1,7 +1,6 @@
 'use client'
-import CategoryList from "@/src/components/category-list";
-import LotListing from "@/src/components/lots/lot-listings";
-import { useEvents } from "@/src/hooks/use-events";
+
+import { useEvents } from "@/hooks/use-events";
 
 export default function Page() {
     const { data, isLoading } = useEvents({ isActive: true })

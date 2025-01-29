@@ -1,5 +1,5 @@
 // import FetchDataSteps from "@/components/tutorial/fetch-data-steps";
-import { createClient, getUserData } from "@/src/lib/supabase/server";
+import { getUserData } from "@/lib/supabase/client";
 import { InfoIcon } from "lucide-react";
 import { redirect } from "next/navigation";
 

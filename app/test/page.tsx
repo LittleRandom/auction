@@ -1,10 +1,9 @@
 // Example usage in a page component (app/page.tsx)
 'use client'
-
-import { DatePickerWithPresets } from '@/src/components/calendar-picker-presets'
-import { CountdownTimer } from '@/src/components/lots/countdown-timer'
-import { Button } from '@/src/components/ui/button'
-import { Input } from '@/src/components/ui/input'
+import { CountdownTimer } from '@/components/auction/lots/countdown-timer';
+import { DatePickerWithPresets } from '@/components/calendar-picker-presets';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { setDate } from 'date-fns'
 import { useEffect, useRef, useState } from 'react'
 

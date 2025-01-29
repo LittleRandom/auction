@@ -1,11 +1,11 @@
 'use client'
 
-import { createClient } from '@/src/lib/supabase/client'
+import { useSupabase } from '@/hooks/use-supabase'
 import { useEffect, useState } from 'react'
 
 export default function Page() {
     const [notes, setNotes] = useState<any[] | null>(null)
-    const supabase = createClient()
+    const supabase = useSupabase()
 
     useEffect(() => {
         const getData = async () => {

@@ -4,8 +4,8 @@ import { Badge } from '@/components/ui/badge';
 import {
     Timer,
 } from 'lucide-react';
-import LotLineCard from '@/src/components/lots/lot-line-card';
-import { useLots } from '@/src/hooks/use-lots';
+import LotLineCard from '@/components/auction/lots/lot-line-card';
+import { useLots } from '@/hooks/use-lots';
 
 export const LotListing = () => {
     const { data, isLoading } = useLots()

@@ -1,10 +1,9 @@
 "use server";
 
+import { createClient } from "@/lib/supabase/server";
 import { encodedRedirect } from "@/lib/utils";
-import { createClient } from "@/src/lib/supabase/server";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
-import { FormEvent, useEffect } from "react";
 
 export const signUpAction = async (formData: FormData) => {
   const email = formData.get("email")?.toString();

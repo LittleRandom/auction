@@ -1,5 +1,5 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useEvents } from "@/src/hooks/use-events";
+import { useEvents } from "@/hooks/use-events";
 import { useEffect, useState } from "react";
 
 // Interface to pass date state to parent

@@ -7,8 +7,8 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
-import { createClient } from '@/src/lib/supabase/client'
 import { EventSelectList } from '../events/event-select-list';
+import { useSupabase } from '@/hooks/use-supabase';
 
 interface LotFormData {
     name: string;
@@ -42,7 +42,7 @@ const ProductForm: React.FC = () => {
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const supabase = createClient()
+        const supabase = useSupabase()
 
         console.log("🚀 ~ handleSubmit ~ formData:", formData)
         const { data, error } = await supabase

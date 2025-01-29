@@ -1,11 +1,11 @@
 import { useState } from "react";
 import ImagePlaceholder from "./image-placeholder";
 
-interface IconComponentProps {
-    image_url?: string;
+interface ImageComponentProps {
+    image_url: string;
 }
 
-const IconComponent: React.FC<IconComponentProps> = ({ image_url }) => {
+const ImageComponent: React.FC<ImageComponentProps> = ({ image_url }) => {
 
     const fallbackSvg = (
         <ImagePlaceholder />
@@ -24,4 +24,4 @@ const IconComponent: React.FC<IconComponentProps> = ({ image_url }) => {
     );
 };
 
-export default IconComponent;
+export default ImageComponent;
