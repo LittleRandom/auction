@@ -4,9 +4,9 @@ import { Badge } from '@/components/ui/badge';
 import {
     Timer,
 } from 'lucide-react';
-import LotLineCard from '@/components/auction/lots/lot-listing-line-card';
 import { useLots } from '@/hooks/use-lots';
 import { LoadingSpinner } from '@/components/placeholders/loading-spinner';
+import LotListingLineCard from '@/components/auction/lots/lot-listing-line-card';
 
 export default function LotListingCard() {
     const { data, isPending } = useLots()
@@ -39,7 +39,7 @@ export default function LotListingCard() {
             <CardContent>
                 <div className="space-y-4">
                     {data?.map((item) => (
-                        <LotLineCard key={item.id} item={item}></LotLineCard>
+                        <LotListingLineCard key={item.id} item={item}></LotListingLineCard>
                     ))}
                 </div>
             </CardContent>

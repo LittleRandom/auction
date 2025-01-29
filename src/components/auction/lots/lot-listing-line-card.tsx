@@ -3,14 +3,11 @@ import { ChevronDown, Users } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { useState, useTransition } from "react";
+import { useState } from "react";
 import IconComponent from "@/components/icon-component";
 import { LotItem } from "@/lib/types";
 import { useRouter } from 'next/navigation'
 import Link from "next/link";
-import { NavigationMenuLink, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
 
 export default function LotListingLineCard({ item }: { item: LotItem }) {
     const [expandedItem, setExpandedItem] = useState<Number | null>(null);
@@ -32,15 +29,22 @@ export default function LotListingLineCard({ item }: { item: LotItem }) {
                 >
                     {/* Left: Icon */}
                     <div className="col-span-3 transition-transform hover:scale-105 cursor-pointer"
-                        onClick={() => router.push(itemUri)}
+                        onClick={(event) => {
+                            event.stopPropagation()
+                            router.push(itemUri)
+                        }}
                     >
                         <IconComponent image_url={item.cf_bucket_url}></IconComponent>
                     </div>
 
                     {/* Middle: Item Details */}
                     <div className="col-span-5 mx-5">
-                        <h4 className="font-semibold tracking-tighter text-xs sm:text-base md:text-lg lg:text-2xl ">
-                            <Link href={itemUri}>{item.name}</Link>
+                        <h4 className="font-semibold tracking-tighter text-xs sm:text-sm md:text-base lg:text-lg my-1 ">
+                            <Link href={itemUri}
+                                onClick={(event) => {
+                                    event.stopPropagation()
+                                }}
+                            >{item.name}</Link>
                         </h4>
                         <div className="flex items-center gap-3 text-sm text-gray-600">
                             <Badge variant="outline">Lot {item.id}</Badge>
