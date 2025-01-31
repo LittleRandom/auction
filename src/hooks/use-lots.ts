@@ -1,10 +1,11 @@
 "use client"
 import { useSupabase } from "@/hooks/use-supabase";
 import { Tables } from "@/lib/supabase/database.types";
-import { useQuery } from "@tanstack/react-query";
+import { LotItem } from "@/lib/types";
+import { useQuery, UseQueryResult } from "@tanstack/react-query";
 
 
-export function useLots() {
+export function useLots() : UseQueryResult<LotItem[], Error> {
     const supabase = useSupabase();
     return useQuery({
         queryKey: ['lots'],
@@ -12,6 +13,7 @@ export function useLots() {
             const { data, error } = await supabase
             .from("auction_lots")
             .select("*")
+            .order('id')
 
             if(error) throw error
             if (!data) throw new Error("Data not found");

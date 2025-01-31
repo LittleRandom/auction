@@ -7,6 +7,8 @@ import {
 import { useLots } from '@/hooks/use-lots';
 import { LoadingSpinner } from '@/components/placeholders/loading-spinner';
 import LotListingLineCard from '@/components/auction/lots/lot-listing-line-card';
+import { useLotsChannel } from '@/hooks/use-lots-realtime';
+import { useEffect } from 'react';
 
 export default function LotListingCard() {
     const { data, isPending } = useLots()
@@ -16,6 +18,11 @@ export default function LotListingCard() {
         title: "8PM Thursday, November 20th",
         timeLeft: "4",
     };
+
+    // const changes = useLotsChannel()
+    // useEffect(() => {
+    //     changes.new
+    // }, [changes])
 
     if (isPending) return <LoadingSpinner />
 

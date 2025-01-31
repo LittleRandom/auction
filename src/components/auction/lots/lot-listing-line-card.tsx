@@ -3,15 +3,15 @@ import { ChevronDown, Users } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import IconComponent from "@/components/icon-component";
 import { LotItem } from "@/lib/types";
 import { useRouter } from 'next/navigation'
 import Link from "next/link";
+import { useLotsChannel } from "@/hooks/use-lots-realtime";
 
 export default function LotListingLineCard({ item }: { item: LotItem }) {
     const [expandedItem, setExpandedItem] = useState<Number | null>(null);
-
     const itemUri = '/lots/' + item.id
 
     const handleBid = (itemId: number) => {

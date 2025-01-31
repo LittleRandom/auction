@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
 import { LotItem } from '@/lib/types';
+import { Separator } from '@/components/ui/separator';
 
 export default function LotPageCard({ data }: { data: LotItem }) {
     const [selectedImage, setSelectedImage] = useState(0);
@@ -57,28 +58,17 @@ export default function LotPageCard({ data }: { data: LotItem }) {
                 <Card className="p-6">
                     <div className="space-y-6">
                         <div>
-                            <h1 className="text-3xl font-bold mb-4">{data.name}</h1>
-                            <div className="grid gap-4">
-                                <div>
-                                    <Label className="text-lg">Current Price</Label>
-                                    <p className="text-2xl font-bold text-green-600">
-                                        ${data.current_bid.toLocaleString()}
+                            <h1 className="text-3xl font-bold my-2">{data.name}</h1>
+                            <Separator />
+                            <div className="grid gap-2">
+                                <div className='flex mt-2'>
+                                    <Label className="font-extralight text-base mr-2">Current Price </Label>
+                                    <p className="text-base font-semibold text-green-600">
+                                        ${data.current_bid.toString()}
                                     </p>
                                 </div>
 
-                                <div>
-                                    <Label className="text-lg">Time Remaining</Label>
-                                    <p className="text-xl text-orange-600 font-semibold">
-                                        {data.event_num}
-                                    </p>
-                                </div>
-
-                                <div>
-                                    <Label className="text-lg">Number of Bids</Label>
-                                    <p className="text-lg">{data.bid_count} bids</p>
-                                </div>
-
-                                <div className="pt-4">
+                                <div >
                                     <Label htmlFor="bid-amount" className="text-lg">
                                         Your Bid Amount
                                     </Label>
@@ -98,6 +88,19 @@ export default function LotPageCard({ data }: { data: LotItem }) {
                                         Enter an amount greater than ${data.current_bid.toLocaleString()}
                                     </p>
                                 </div>
+
+                                <div>
+                                    <Label className="text-lg">Time Remaining</Label>
+                                    <p className="text-xl text-orange-600 font-semibold">
+                                        {data.event_num}
+                                    </p>
+                                </div>
+
+                                <div>
+                                    <Label className="text-lg">Number of Bids</Label>
+                                    <p className="text-lg">{data.bid_count} bids</p>
+                                </div>
+
                             </div>
                         </div>
                     </div>

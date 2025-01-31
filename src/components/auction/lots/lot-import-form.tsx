@@ -40,9 +40,10 @@ const ProductForm: React.FC = () => {
         event_num: 0,
     });
 
+    const supabase = useSupabase()
+
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const supabase = useSupabase()
 
         console.log("🚀 ~ handleSubmit ~ formData:", formData)
         const { data, error } = await supabase
