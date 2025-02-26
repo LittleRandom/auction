@@ -2,7 +2,7 @@ import { FormMessage, Message } from "@/components/form-message";
 import { SubmitButton } from "@/components/submit-button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { signInAction } from "app/actions";
+import { signInAction } from "@/lib/auth-actions";
 import Link from "next/link";
 
 export default async function Login(props: { searchParams: Promise<Message> }) {
