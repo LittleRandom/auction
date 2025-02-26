@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { getUserData } from "@/lib/supabase/server";
-import { signOutAction } from "app/actions";
+import { signOutAction } from "@/lib/auth-actions";
 
 export default async function AuthButton() {
 

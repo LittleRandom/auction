@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/navigation-menu"
 
 
-import Providers from 'app/providers'
+import Providers from '@/app/providers'
 import AuctionLogo from "@/components/ui/logo";
 
 const defaultUrl = process.env.VERCEL_URL
