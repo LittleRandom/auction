@@ -1,38 +1,37 @@
-import { useEffect, useState } from 'react';
-import io, { Socket } from 'socket.io-client';
+import { socket } from "@/lib/socket";
+import { useEffect, useState } from "react";
 
-export const useSocket = () => {
-  const [socket, setSocket] = useState<Socket | null>(null);
-  const [isConnected, setIsConnected] = useState(false);
-  const [messages, setMessages] = useState<string[]>([]);
+export function useSocket() {
+    const [isConnected, setIsConnected] = useState(false);
+    const [transport, setTransport] = useState("N/A");
 
-  useEffect(() => {
-    const socketIo = io();
+    useEffect(() => {
+      if (socket.connected) {
+        onConnect();
+      }
 
-    socketIo.on('connect', () => {
-      setIsConnected(true);
-    });
+      function onConnect() {
+        setIsConnected(true);
+        setTransport(socket.io.engine.transport.name);
 
-    socketIo.on('disconnect', () => {
-      setIsConnected(false);
-    });
+        socket.io.engine.on("upgrade", (transport) => {
+          setTransport(transport.name);
+        });
+      }
 
-    socketIo.on('chat message', (msg: string) => {
-      setMessages((prevMessages) => [...prevMessages, msg]);
-    });
+      function onDisconnect() {
+        setIsConnected(false);
+        setTransport("N/A");
+      }
 
-    setSocket(socketIo);
+      socket.on("connect", onConnect);
+      socket.on("disconnect", onDisconnect);
 
-    return () => {
-      socketIo.disconnect();
-    };
-  }, []);
+      return () => {
+        socket.off("connect", onConnect);
+        socket.off("disconnect", onDisconnect);
+      };
+    }, []);
 
-  const sendMessage = (message: string) => {
-    if (socket) {
-      socket.emit('chat message', message);
-    }
-  };
-
-  return { isConnected, messages, sendMessage };
-};
+    return socket
+}
