@@ -10,20 +10,6 @@ import { Separator } from '@/components/ui/separator';
 export default function LotPageCard({ data }: { data: LotItem }) {
     const [selectedImage, setSelectedImage] = useState(0);
 
-    // Sample data - in a real app this would come from props or API
-    const item = {
-        name: "Vintage Leather Armchair",
-        currentPrice: 450,
-        timeRemaining: "2 days 4 hours",
-        totalBids: 23,
-        images: [
-            "/api/placeholder/600/400",
-            "/api/placeholder/600/400",
-            "/api/placeholder/600/400",
-            "/api/placeholder/600/400"
-        ]
-    }
-
     return (
         <div className="container mx-auto p-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

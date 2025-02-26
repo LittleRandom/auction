@@ -11,6 +11,9 @@ export default async function Page({
 
     const id = (await params).id
     return (
-        <LotCard id={id}></LotCard>
+        <div className="">
+
+            <LotCard id={id}></LotCard>
+        </div>
     )
 }
