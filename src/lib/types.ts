@@ -10,12 +10,18 @@ export interface TimeLeft {
     seconds: number;
   }
 
-  export interface TimerResponse {
-    end_datetime: string;
-  }
+export interface TimerResponse {
+  end_datetime: string;
+}
 
-  export interface TimerMessage {
-    type: 'extend' | 'update';
-    end_datetime?: string;
-    extension?: number;
-  }
+export interface TimerMessage {
+  type: 'extend' | 'update';
+  end_datetime?: string;
+  extension?: number;
+}
+
+interface Success<T> {
+  data: T;
+}
+
+export type Response<T> = Error | Success<T>;
