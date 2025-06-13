@@ -1,5 +1,5 @@
 <a href="">
-  <img alt="Auction Website" src="">
+  <img alt="Auction Website" src="/public/demo.png">
   <h1 align="center">Realtime Auctioning Website</h1>
 </a>
 
